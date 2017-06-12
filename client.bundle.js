@@ -15403,8 +15403,9 @@ var _configureStore2 = _interopRequireDefault(_configureStore);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var basename = '/werewolf-moderator-web';
 var history = (0, _createBrowserHistory2.default)({
-  basename: '/werewolf-moderator-web'
+  basename: basename
 });
 var store = (0, _configureStore2.default)({ history: history });
 
@@ -15420,7 +15421,7 @@ var store = (0, _configureStore2.default)({ history: history });
 
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', function () {
-    navigator.serviceWorker.register('/serviceWorker.bundle.js').then(function (registration) {
+    navigator.serviceWorker.register('/' + basename + '/serviceWorker.bundle.js').then(function (registration) {
       // Registration was successful
       console.log('ServiceWorker registration successful with scope: ', registration.scope);
     }, function (err) {
