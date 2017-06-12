@@ -14733,7 +14733,8 @@ var App = function (_Component) {
       return _react2.default.createElement(
         'div',
         null,
-        _react2.default.createElement(_reactRouter.Route, { exact: true, path: '/', render: function render(r) {
+        _react2.default.createElement(_reactRouter.Redirect, { from: '/', to: '/home' }),
+        _react2.default.createElement(_reactRouter.Route, { exact: true, path: '/home', render: function render(r) {
             return _react2.default.createElement(_Home2.default, _extends({}, r, _this2.props));
           } }),
         _react2.default.createElement(_reactRouter.Route, { path: '/cards', render: function render(r) {
@@ -15332,16 +15333,12 @@ exports.default = Object.assign({}, gameCreationActions, navigationActions, acce
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.goBack = exports.goToGame = exports.goToScreenplay = exports.goToHome = exports.goToSetup = undefined;
+exports.goBack = exports.goToGame = exports.goToScreenplay = exports.goToHome = undefined;
 
 var _reactRouterRedux = __webpack_require__(26);
 
-var goToSetup = exports.goToSetup = function goToSetup() {
-  return (0, _reactRouterRedux.replace)('/');
-};
-
 var goToHome = exports.goToHome = function goToHome() {
-  return (0, _reactRouterRedux.push)('/');
+  return (0, _reactRouterRedux.push)('/home');
 };
 
 var goToScreenplay = exports.goToScreenplay = function goToScreenplay() {
@@ -15406,7 +15403,9 @@ var _configureStore2 = _interopRequireDefault(_configureStore);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var history = (0, _createBrowserHistory2.default)();
+var history = (0, _createBrowserHistory2.default)({
+  basename: '/werewolf-moderator-web'
+});
 var store = (0, _configureStore2.default)({ history: history });
 
 (0, _reactDom.render)(_react2.default.createElement(
@@ -15845,7 +15844,7 @@ var Game = function (_Component) {
     key: 'componentWillMount',
     value: function componentWillMount() {
       if (!this.props.game) {
-        this.props.goToSetup();
+        this.props.goToHome();
       }
     }
   }, {
@@ -15877,7 +15876,7 @@ var Game = function (_Component) {
               { className: 'panel-footer' },
               _react2.default.createElement(
                 'button',
-                { onClick: this.props.goToSetup, className: 'btn btn-default col-md-2 col-xs-12' },
+                { onClick: this.props.goToHome, className: 'btn btn-default col-md-2 col-xs-12' },
                 _react2.default.createElement('i', { className: 'fa fa-arrow-left', 'aria-hidden': 'true' })
               ),
               _react2.default.createElement(
@@ -16023,7 +16022,7 @@ var Screenplay = function (_Component) {
     key: 'componentWillMount',
     value: function componentWillMount() {
       if (!this.props.game) {
-        this.props.goToSetup();
+        this.props.goToHome();
       }
     }
   }, {
